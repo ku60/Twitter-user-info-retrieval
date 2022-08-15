@@ -1,8 +1,8 @@
 # Twitter-user-info-retrieval
 
 you need to prepare
-.new Twitter account
- to use Twitter fully. memo the username and password
+.new Twitter account \n
+ to use Twitter fully. memo the username and password \n
 .ChromeDriver
  install to your environment
 .activate your Google API of Google Drive and Google Sheet
