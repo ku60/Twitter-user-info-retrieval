@@ -9,3 +9,4 @@
  and make sure that your service account is invited as sheet editor   
 * secret key  
  save in the same directory  
+you can see a sample [Google Spread Sheet](https://docs.google.com/spreadsheets/d/1iju6VPkvuRXNQEDRO13SUuKYCh-g3ek1b-KZQPxKvu0/edit#gid=0)
