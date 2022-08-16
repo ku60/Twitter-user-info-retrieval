@@ -5,6 +5,8 @@
  to use Twitter fully. memo the username and password  
 * ChromeDriver  
  install to your environment  
+* user agent  
+ you can check your user agent on [this page](http://httpbin.org/user-agent)  
 * activate your Google API of Google Drive and Google Sheet  
  and make sure that your service account is invited as sheet editor   
 * secret key  
