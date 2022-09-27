@@ -122,6 +122,9 @@ def write_data(account_name, sheet, col_num, row):
     sheet.update_acell(chr(col_num+101)+str(row), date)
 
 
+"""
+for one account
+you can do like this
 
 if __name__ = "__main__" :
     user_agent = "write your own user agent"
@@ -154,3 +157,5 @@ if __name__ = "__main__" :
         sys.exit()
     
     write_data(account_name, sheet, col_num, row)
+    
+ """
