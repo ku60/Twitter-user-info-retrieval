@@ -9,7 +9,7 @@ import sys
 from selenium import webdriver
 import time
 
-import main
+import utils
 
 if __name__ = "__main__" :
     user_agent = "write your own user agent"
@@ -27,14 +27,15 @@ if __name__ = "__main__" :
     
     
     
-    options = ChromeDriver_setup(user_agent)
+    options = utils.ChromeDriver_setup(user_agent)
     driver = webdriver.Chrome(driver_path, chrome_options=options)
     driver.get(url)
     time.sleep(2)
-    main.start_ChromeDriver(user_agent, driver_path, url)
+    utils.login(user_name, password)
+    
     
     try:
-        sheet = main.get_gspread_book(secret_key, book_name).worksheet(sheet_name)
+        sheet = utils.get_gspread_book(secret_key, book_name).worksheet(sheet_name)
     except SpreadsheetNotFound:
         print('Spreadsheet: ' + book_name + 'NotFound')
         sys.exit()
@@ -42,7 +43,7 @@ if __name__ = "__main__" :
         print('Worksheet: ' + sheet_name + 'NotFound')
         sys.exit()
     
-    for i in range(int(next_available_row(sheet, account_name_col+1)), int(next_available_row(sheet, account_name_col))):
-        account_name = sheet.cell(i,user_name_col).value
-        row = main.next_available_row(sheet, user_name_col+1)
-        main.write_data(account_name, sheet, user_name_col, row)
+    for i in range(int(utils.next_available_row(sheet, account_name_col+1)), int(utils.next_available_row(sheet, account_name_col))):
+        account_name = sheet.cell(i, account_name_col).value
+        row = main.next_available_row(sheet, account_name_col+1)
+        utils.write_data(account_name, sheet, account_name_col, row)
