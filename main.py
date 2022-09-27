@@ -142,7 +142,7 @@ if __name__ = "__main__" :
     driver = webdriver.Chrome(driver_path, chrome_options=options)
     driver.get(url)
     time.sleep(2)
-    start_ChromeDriver(user_agent, driver_path, url)
+    login(user_name, password)
     
     try:
         sheet = get_gspread_book(secret_key, book_name).worksheet(sheet_name)
