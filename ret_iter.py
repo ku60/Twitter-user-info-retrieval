@@ -18,9 +18,9 @@ if __name__ == "__main__" :
     user_name = input("write your own test account name >> ")
     password = input("the accouts' password >> ")
 
-    secret_key = input("write your own secret key pass >> ")
-    book_name = input("ex) Twitter_account_info_list >> ")
-    sheet_name = input("ex) sheet1 >> ")
+    secret_key = input("write your own secret key path >> ")
+    book_name = input("write book name ex) Twitter_account_info_list >> ")
+    sheet_name = input("write sheeet name ex) sheet1 >> ")
     
     account_name_col = input("write column number (start with one, A:1, B:2, ...) account name is written as int type (in the sample sheet: 3) >> ")
     
