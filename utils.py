@@ -130,6 +130,7 @@ def get_account_name(row_num, col_num, sheet):
 	driver.get(ret_account + "/following")
     time.sleep(4)
     count = 0
+	
 	for i in range(1,following_num+1):
 		if count >= 10:
 			driver.execute_script("window.scrollBy(0, 90);")
