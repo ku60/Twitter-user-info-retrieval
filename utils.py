@@ -161,7 +161,6 @@ def get_account_name(row_num, col_num, sheet):
 			count += 1
 
 
-
 """
 for one account
 you can do like this
