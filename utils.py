@@ -17,7 +17,7 @@ def ChromeDriver_setup(user_agent):
     return options
 
 
-def login(user_name, password):
+def login(user_name, password, driver):
     login_button = driver.find_element("xpath", '/html/body/div/div/div/div[2]/main/div/div/div[1]/div[1]/div/div[3]/div[5]/a/div')
     login_button.click()
     time.sleep(1)
@@ -33,7 +33,7 @@ def login(user_name, password):
     login_conf.click()
 
 
-def ret_account_info(account_name):
+def ret_account_info(account_name, driver):
     ac_url = url + account_name
     driver.get(ac_url)
     time.sleep(4)
@@ -105,7 +105,7 @@ def get_gspread_book(secret_key, book_name):
     return book
 
 
-def write_data(account_name, sheet, col_num, row):
+def write_data(account_name, sheet, col_num, row, driver):
     """
     pass the int correspond to column you want to start writing data
     column "A" corresponds to 1, "B":2, ...
@@ -114,7 +114,7 @@ def write_data(account_name, sheet, col_num, row):
     ASCII code point "a" corresponds to 97 and "z" to 122
     you need to make sure 1 <= col_num <= 21
     """ 
-    name, ac_url, fing, fer, ff, date = ret_account_info(account_name)
+    name, ac_url, fing, fer, ff, date = ret_account_info(account_name, driver)
     sheet.update_acell(chr(col_num+96)+str(row), name)
     sheet.update_acell(chr(col_num+97)+str(row), ac_url)
     sheet.update_acell(chr(col_num+98)+str(row), fing)
@@ -123,7 +123,7 @@ def write_data(account_name, sheet, col_num, row):
     sheet.update_acell(chr(col_num+101)+str(row), date)
 
 
-def get_account_name(row_num, col_num, sheet):
+def get_account_name(row_num, col_num, sheet, driver):
 	#row_num: row number written account name you want to check following
 	following_num = int(sheet.cell(row_num, col_num+2).value)
 	ret_account = sheet.cell(row_num, col_num+1).value
