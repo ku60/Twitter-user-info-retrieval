@@ -11,7 +11,7 @@ import time
 
 import utils
 
-if __name__ = "__main__" :
+if __name__ == "__main__" :
     user_agent = input("write your own user agent >> ")
     driver_path = input("write your own driver path >> ")
     url = "https://twitter.com/"
