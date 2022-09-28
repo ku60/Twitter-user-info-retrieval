@@ -104,14 +104,15 @@ def get_gspread_book(secret_key, book_name):
     book = gc.open(book_name)
     return book
 
+
 def write_data(account_name, sheet, col_num, row):
     """
     pass the int correspond to column you want to start writing data
-    column "A" corresponds to 0, "B":1, ...
-    ex) if you want to start with column "C", pass 2 as start_chr
+    column "A" corresponds to 1, "B":2, ...
+    ex) if you want to start with column "C", pass 3 as start_chr
     
     ASCII code point "a" corresponds to 97 and "z" to 122
-    you need to make sure 0 <= col_num <= 20
+    you need to make sure 1 <= col_num <= 21
     """ 
     name, ac_url, fing, fer, ff, date = ret_account_info(account_name)
     sheet.update_acell(chr(col_num+96)+str(row), name)
@@ -120,6 +121,34 @@ def write_data(account_name, sheet, col_num, row):
     sheet.update_acell(chr(col_num+99)+str(row), fer)
     sheet.update_acell(chr(col_num+100)+str(row), ff)
     sheet.update_acell(chr(col_num+101)+str(row), date)
+
+
+def get_account_name(row_num, col_num, sheet):
+	#row_num: row number written account name you want to check following
+	following_num = int(sheet.cell(row_num, col_num+2).value)
+    ret_account = sheet.cell(row_num, col_num+1).value
+	driver.get(ret_account + "/following")
+    time.sleep(4)
+    count = 0
+	
+	for i in range(1,following_num+1):
+		try:
+			account = driver.find_element("xpath", f"/html/body/div[1]/div/div/div[2]/main/div/div/div/div/div/section/div/div/div[{i}]/div/div/div/div/div[2]/div[1]/div[1]/div/div[2]/div/a/div/div/span")
+			account_name = account.text.replace("@","")
+			row = next_available_row(sheet, col_num)
+			cell = chr(col_num+96) + row
+			sheet.update_acell(cell, account_name)
+			if int(sheet.cell(int(row), 2).value)>=2 :
+				sheet.delete_row(int(row)) 
+	
+		except:
+			pass
+		count += 1
+		#scroll to load
+		if count == 7:
+			driver.execute_script("window.scrollBy(0, document.body.scrollHeight);")
+			time.sleep(6)
+			count = 0
 
 
 """
