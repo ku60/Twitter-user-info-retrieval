@@ -132,23 +132,34 @@ def get_account_name(row_num, col_num, sheet):
     count = 0
 	
 	for i in range(1,following_num+1):
-		try:
-			account = driver.find_element("xpath", f"/html/body/div[1]/div/div/div[2]/main/div/div/div/div/div/section/div/div/div[{i}]/div/div/div/div/div[2]/div[1]/div[1]/div/div[2]/div/a/div/div/span")
-			account_name = account.text.replace("@","")
-			row = next_available_row(sheet, col_num)
-			cell = chr(col_num+96) + row
-			sheet.update_acell(cell, account_name)
-			if int(sheet.cell(int(row), 2).value)>=2 :
-				sheet.delete_row(int(row)) 
+		if count >= 10:
+			driver.execute_script("window.scrollBy(0, 90);")
+			if count%10 == 5:
+				time.sleep(5)
+			try:
+				account = driver.find_element("xpath", "/html/body/div[1]/div/div/div[2]/main/div/div/div/div/div/section/div/div/div[11]/div/div/div/div/div[2]/div[1]/div[1]/div/div[2]/div/a/div/div/span")
+				account_name = account.text.replace("@","")
+				row = next_available_row(sheet, col_num)
+				cell = chr(col_num+96) + row
+				sheet.update_acell(cell, account_name)
+				if int(sheet.cell(int(row), 2).value)>=2 :
+					sheet.delete_row(int(row)) 
+			except:
+				pass
+			count += 1
+		else:
+			try:
+				account = driver.find_element("xpath", f"/html/body/div[1]/div/div/div[2]/main/div/div/div/div/div/section/div/div/div[{i}]/div/div/div/div/div[2]/div[1]/div[1]/div/div[2]/div/a/div/div/span")
+				account_name = account.text.replace("@","")
+				row = next_available_row(sheet, col_num)
+				cell = chr(col_num+96) + row
+				sheet.update_acell(cell, account_name)
+				if int(sheet.cell(int(row), 2).value)>=2 :
+					sheet.delete_row(int(row)) 
+			except:
+				pass
+			count += 1
 
-		except:
-			pass
-		count += 1
-		#scroll to load
-		if count == 7:
-			driver.execute_script("window.scrollBy(0, document.body.scrollHeight);")
-			time.sleep(6)
-			count = 0
 
 
 """
