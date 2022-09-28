@@ -140,7 +140,7 @@ def get_account_name(row_num, col_num, sheet):
 			sheet.update_acell(cell, account_name)
 			if int(sheet.cell(int(row), 2).value)>=2 :
 				sheet.delete_row(int(row)) 
-	
+
 		except:
 			pass
 		count += 1
