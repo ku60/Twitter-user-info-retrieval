@@ -12,20 +12,19 @@ import time
 import utils
 
 if __name__ = "__main__" :
-    user_agent = "write your own user agent"
-    driver_path = "write your own driver path"
+    user_agent = input("write your own user agent >> ")
+    driver_path = input("write your own driver path >> ")
     url = "https://twitter.com/"
-    user_name = "write your own test account name"
-    password = "the accouts' password"
+    user_name = input("write your own test account name >> ")
+    password = input("the accouts' password >> ")
 
-    secret_key = "write your own secret key pass"
-    book_name = 'ex) Twitter_account_info_list'
-    sheet_name = "ex) sheet1"
+    secret_key = input("write your own secret key pass >> ")
+    book_name = input("ex) Twitter_account_info_list >> ")
+    sheet_name = input("ex) sheet1 >> ")
     
-    accoount_name = "write account name you want to know"
-    accout_name_col = "write column number (start with one, A:1, B:2, ...) account data are written as int type (in the sample sheet, 3)"
+    account_name_col = input("write column number (start with one, A:1, B:2, ...) account name is written as int type (in the sample sheet: 3) >> ")
     
-    
+    target_row = input("write row number written account you want to check following is written >> ")
     
     options = utils.ChromeDriver_setup(user_agent)
     driver = webdriver.Chrome(driver_path, chrome_options=options)
@@ -42,7 +41,12 @@ if __name__ = "__main__" :
     except WorksheetNotFound:
         print('Worksheet: ' + sheet_name + 'NotFound')
         sys.exit()
+        
+    #list account names up
+    get_account_name(target_row, account_name_col, sheet)
     
+    
+    #retrive account info
     for i in range(int(utils.next_available_row(sheet, account_name_col+1)), int(utils.next_available_row(sheet, account_name_col))):
         account_name = sheet.cell(i, account_name_col).value
         row = utils.next_available_row(sheet, account_name_col+1)
