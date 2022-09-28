@@ -14,4 +14,10 @@
 * check robots.txt  
  rule of scraping. you can see it by using checking_robots_txt.ipynb  
  
-you can see my sample [Google Spread Sheet](https://docs.google.com/spreadsheets/d/1iju6VPkvuRXNQEDRO13SUuKYCh-g3ek1b-KZQPxKvu0/edit#gid=0)  
+you can see my sample [Google Spread Sheet](https://docs.google.com/spreadsheets/d/1iju6VPkvuRXNQEDRO13SUuKYCh-g3ek1b-KZQPxKvu0/edit#gid=0) 
+
+
+# to do
+* simplify inputs
+* more explanation about usage
+* make sleep time setable
