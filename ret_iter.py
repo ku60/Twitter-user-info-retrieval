@@ -30,7 +30,7 @@ if __name__ == "__main__" :
     driver = webdriver.Chrome(driver_path, chrome_options=options)
     driver.get(url)
     time.sleep(2)
-    utils.login(user_name, password)
+    utils.login(user_name, password, driver)
     
     
     try:
@@ -43,11 +43,11 @@ if __name__ == "__main__" :
         sys.exit()
         
     #list account names up
-    get_account_name(target_row, account_name_col, sheet)
+    get_account_name(target_row, account_name_col, sheet, driver)
     
     
     #retrive account info
     for i in range(int(utils.next_available_row(sheet, account_name_col+1)), int(utils.next_available_row(sheet, account_name_col))):
         account_name = sheet.cell(i, account_name_col).value
         row = utils.next_available_row(sheet, account_name_col+1)
-        utils.write_data(account_name, sheet, account_name_col, row)
+        utils.write_data(account_name, sheet, account_name_col, row, driver)
