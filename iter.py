@@ -45,5 +45,5 @@ if __name__ = "__main__" :
     
     for i in range(int(utils.next_available_row(sheet, account_name_col+1)), int(utils.next_available_row(sheet, account_name_col))):
         account_name = sheet.cell(i, account_name_col).value
-        row = main.next_available_row(sheet, account_name_col+1)
+        row = utils.next_available_row(sheet, account_name_col+1)
         utils.write_data(account_name, sheet, account_name_col, row)
